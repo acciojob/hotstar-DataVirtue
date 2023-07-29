@@ -72,7 +72,7 @@ public class SubscriptionService {
         User user = userOptional.get();
         Subscription subscription = user.getSubscription();
         int priceDiff = 0;
-        if(subscription.getSubscriptionType()== SubscriptionType.BASIC){
+        if(subscription.getSubscriptionType().equals(SubscriptionType.BASIC)){
 
             subscription.setSubscriptionType(SubscriptionType.PRO);
 
@@ -81,21 +81,21 @@ public class SubscriptionService {
             priceDiff = getCost(SubscriptionType.PRO,subscription.getNoOfScreensSubscribed())
                     - getCost(SubscriptionType.BASIC,subscription.getNoOfScreensSubscribed());
 
-            subscription.setTotalAmountPaid(subscription.getTotalAmountPaid()+ priceDiff);
+//            subscription.setTotalAmountPaid(subscription.getTotalAmountPaid()+ priceDiff);
 
-        }else if(subscription.getSubscriptionType()== SubscriptionType.PRO){
+        }else if(subscription.getSubscriptionType().equals(SubscriptionType.PRO)){
 
             subscription.setSubscriptionType(SubscriptionType.ELITE);
 
             priceDiff = getCost(SubscriptionType.ELITE,subscription.getNoOfScreensSubscribed())
                     - getCost(SubscriptionType.PRO,subscription.getNoOfScreensSubscribed());
 
-            subscription.setTotalAmountPaid(subscription.getTotalAmountPaid()+ priceDiff);
+//            subscription.setTotalAmountPaid(subscription.getTotalAmountPaid()+ priceDiff);
 
         }else{
             throw new Exception("Already the best Subscription");
         }
-        user.setSubscription(subscription);
+//        user.setSubscription(subscription);
         userRepository.save(user);
 
         return priceDiff;

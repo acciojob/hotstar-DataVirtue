@@ -22,6 +22,7 @@ public class Subscription {
 
     private int noOfScreensSubscribed;
 
+
     private Date startSubscriptionDate;
 
     private int totalAmountPaid;

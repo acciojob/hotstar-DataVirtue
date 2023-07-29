@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WebseriesController {
 
     @Autowired
-    WebSeriesService webSeriesService;
+    WebSeriesService webSeriesService = new WebSeriesService();
 
     @PostMapping("/add")
     public int addWebSeries(WebSeriesEntryDto webSeriesEntryDto){

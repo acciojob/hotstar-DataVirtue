@@ -37,7 +37,7 @@ public class SubscriptionService {
         }
 
 
-        return 1000 + (300* numOfScreens);
+        return 1000 + (350* numOfScreens);
     }
     public Integer buySubscription(SubscriptionEntryDto subscriptionEntryDto){
 

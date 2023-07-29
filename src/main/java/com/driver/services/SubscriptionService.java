@@ -19,12 +19,10 @@ import java.util.Optional;
 public class SubscriptionService {
 
     @Autowired
-    SubscriptionRepository subscriptionRepository = new SubscriptionRepository() {
-    };
+    SubscriptionRepository subscriptionRepository;
 
     @Autowired
-    UserRepository userRepository = new UserRepository() {
-    };
+    UserRepository userRepository;
 
     private int getCost(SubscriptionType subscriptionType, int numOfScreens){
 //        For Basic Plan : 500 + 200noOfScreensSubscribed
@@ -44,7 +42,7 @@ public class SubscriptionService {
     public Integer buySubscription(SubscriptionEntryDto subscriptionEntryDto){
 
         Optional<User> userOptional = userRepository.findById(subscriptionEntryDto.getUserId());
-        if(userOptional.get()==null){
+        if(!userOptional.isPresent()){
             throw new RuntimeException("user not found");
         }
         User user = userOptional.get();
@@ -67,9 +65,9 @@ public class SubscriptionService {
         //In all other cases just try to upgrade the subscription and tell the difference of price that user has to pay
         //update the subscription in the repository
         Optional<User> userOptional = userRepository.findById(userId);
-        if(userOptional.get()==null){
-            throw new RuntimeException("user not found");
-        }
+//        if(!userOptional.isPresent()){
+//            throw new RuntimeException("user not found");
+//        }
 //        System.out.println(userOptional.get());
         User user = userOptional.get();
         Subscription subscription = user.getSubscription();

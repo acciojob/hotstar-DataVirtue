@@ -14,7 +14,7 @@ public class SubscriptionController {
     SubscriptionService subscriptionService = new SubscriptionService();
 
     @PostMapping("/buy")
-    public Integer buySubscription( SubscriptionEntryDto subscriptionEntryDto){
+    public Integer buySubscription(@RequestBody SubscriptionEntryDto subscriptionEntryDto){
 
         //We need to buy subscription and save its relevant subscription to the db and return the finalAmount
 

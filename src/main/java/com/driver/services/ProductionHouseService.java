@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 public class ProductionHouseService {
 
     @Autowired
-    ProductionHouseRepository productionHouseRepository = new ProductionHouseRepository() {
-    };
+    ProductionHouseRepository productionHouseRepository;
 
     public Integer addProductionHouseToDb(ProductionHouseEntryDto productionHouseEntryDto){
 

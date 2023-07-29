@@ -42,11 +42,15 @@ public class WebSeriesService {
 //       }
        ProductionHouse productionHouse = productionHouseOptional.get();
        webSeries.setProductionHouse(productionHouse);
-       productionHouse.setRatings(productionHouse.getId() + webSeries.getRating());
         productionHouse.getWebSeriesList().add(webSeries);
-
+        int sum = 0;
+        for(WebSeries tempWebseries: productionHouse.getWebSeriesList()){
+            sum+= webSeries.getRating();
+        }
+        productionHouse.setRatings(sum/productionHouse.getWebSeriesList().size());
        ProductionHouse savedProductionHouse =  productionHouseRepository.save(productionHouse);
-       return productionHouse.getWebSeriesList().get(productionHouse.getWebSeriesList().size()-1).getId();
+       WebSeries savedWebseries = webSeriesRepository.save(webSeries);
+       return savedWebseries.getId();
     }
 
 }

@@ -46,18 +46,17 @@ public class SubscriptionService {
             throw new RuntimeException("user not found");
         }
         User user = userOptional.get();
+        int total = getCost(subscriptionEntryDto.getSubscriptionType(),subscriptionEntryDto.getNoOfScreensRequired());
 
         //Save The subscription Object into the Db and return the total Amount that user has to pay
-        Subscription subscription = new Subscription();
-        subscription.setSubscriptionType(subscriptionEntryDto.getSubscriptionType());
-        subscription.setNoOfScreensSubscribed(subscriptionEntryDto.getNoOfScreensRequired());
-        subscription.setStartSubscriptionDate(new Date());
+        Subscription subscription = new Subscription(subscriptionEntryDto.getSubscriptionType()
+                ,subscriptionEntryDto.getNoOfScreensRequired(),new Date(),total);
 
-        subscription.setTotalAmountPaid(getCost(subscriptionEntryDto.getSubscriptionType(),subscriptionEntryDto.getNoOfScreensRequired()));
         subscription.setUser(user);
         user.setSubscription(subscription);
 
-        return userRepository.save(user).getSubscription().getTotalAmountPaid();
+         userRepository.save(user);
+         return total;
     }
 
     public Integer upgradeSubscription(Integer userId)throws Exception{

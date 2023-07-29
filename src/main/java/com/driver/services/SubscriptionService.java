@@ -28,11 +28,11 @@ public class SubscriptionService {
 //        For Basic Plan : 500 + 200noOfScreensSubscribed
 //        For PRO Plan : 800 + 250noOfScreensSubscribed
 //        For ELITE Plan : 1000 + 350*noOfScreensSubscribed?
-        if(subscriptionType == SubscriptionType.BASIC){
+        if(subscriptionType.equals(SubscriptionType.BASIC)){
             return 500 + 200* numOfScreens;
         }
 
-        if(subscriptionType == SubscriptionType.PRO){
+        if(subscriptionType.equals(SubscriptionType.PRO)){
             return 800 + 250* numOfScreens;
         }
 

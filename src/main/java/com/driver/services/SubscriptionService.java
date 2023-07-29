@@ -56,7 +56,8 @@ public class SubscriptionService {
         subscription.setTotalAmountPaid(getCost(subscriptionEntryDto.getSubscriptionType(),subscriptionEntryDto.getNoOfScreensRequired()));
         subscription.setUser(user);
         user.setSubscription(subscription);
-        return subscriptionRepository.save(subscription).getId();
+
+        return userRepository.save(user).getSubscription().getTotalAmountPaid();
     }
 
     public Integer upgradeSubscription(Integer userId)throws Exception{

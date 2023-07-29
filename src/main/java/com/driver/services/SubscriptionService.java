@@ -95,7 +95,8 @@ public class SubscriptionService {
         }else{
             throw new Exception("Already the best Subscription");
         }
-        subscriptionRepository.save(subscription);
+        user.setSubscription(subscription);
+        userRepository.save(user);
 
         return priceDiff;
     }
@@ -106,11 +107,11 @@ public class SubscriptionService {
         //Hint is to use findAll function from the SubscriptionDb
         int revenue = 0;
 
-//        List<Subscription> subscriptionList = subscriptionRepository.findAll();
-//
-//        for(Subscription subscription: subscriptionList){
-//            revenue+= subscription.getTotalAmountPaid();
-//        }
+        List<Subscription> subscriptionList = subscriptionRepository.findAll();
+
+        for(Subscription subscription: subscriptionList){
+            revenue+= subscription.getTotalAmountPaid();
+        }
 
         return revenue;
     }

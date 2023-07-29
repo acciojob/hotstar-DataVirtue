@@ -66,9 +66,9 @@ public class SubscriptionService {
         //In all other cases just try to upgrade the subscription and tell the difference of price that user has to pay
         //update the subscription in the repository
         Optional<User> userOptional = userRepository.findById(userId);
-//        if(!userOptional.isPresent()){
-//            throw new RuntimeException("user not found");
-//        }
+        if(!userOptional.isPresent()){
+            throw new RuntimeException("user not found");
+        }
 //        System.out.println(userOptional.get());
         User user = userOptional.get();
         Subscription subscription = user.getSubscription();

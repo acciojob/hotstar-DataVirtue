@@ -19,10 +19,12 @@ import java.util.Optional;
 public class SubscriptionService {
 
     @Autowired
-    SubscriptionRepository subscriptionRepository;
+    SubscriptionRepository subscriptionRepository = new SubscriptionRepository() {
+    };
 
     @Autowired
-    UserRepository userRepository;
+    UserRepository userRepository = new UserRepository() {
+    };
 
     private int getCost(SubscriptionType subscriptionType, int numOfScreens){
 //        For Basic Plan : 500 + 200noOfScreensSubscribed
